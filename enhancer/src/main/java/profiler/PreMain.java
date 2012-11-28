@@ -33,7 +33,7 @@ class Transformer implements ClassFileTransformer {
 		
 		// can't profile yourself
 		//
-		if (className.startsWith("sample/profiler")) {
+		if (className.startsWith("profiler")) {
 			return classfileBuffer;
 		}		
 		

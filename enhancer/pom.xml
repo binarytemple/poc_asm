@@ -40,11 +40,8 @@
                             <transformers>
                                 <transformer
                                         implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>the main class</mainClass>
                                     <manifestEntries>
-                                        <Main-Class>the main class</Main-Class>
-                                        <Build-Number>123</Build-Number>
-                                        <Premain-Class>the class that runs before main</Premain-Class>
+                                        <Premain-Class>profiler.PreMain</Premain-Class>
                                     </manifestEntries>
                                 </transformer>
                             </transformers>

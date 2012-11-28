@@ -22,7 +22,7 @@ public class PerfMethodAdapter extends MethodAdapter {
 		this.visitLdcInsn(_className);
 		this.visitLdcInsn(_methodName);
 		this.visitMethodInsn(INVOKESTATIC, 
-				"sample/profiler/Profile", 
+				"profiler/Profile",
 				"start", 
 				"(Ljava/lang/String;Ljava/lang/String;)V");
 		
@@ -41,7 +41,7 @@ public class PerfMethodAdapter extends MethodAdapter {
 			this.visitLdcInsn(_className);
 			this.visitLdcInsn(_methodName);
 			this.visitMethodInsn(INVOKESTATIC, 
-					"sample/profiler/Profile", 
+					"profiler/Profile",
 					"end", 
 					"(Ljava/lang/String;Ljava/lang/String;)V");
 			break;
