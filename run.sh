@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-mvn install
+mvn -q install
 
 cat <<END
 **************************************************
@@ -9,7 +9,6 @@ Executing the example jar
 END
 
 java -jar ./example/target/example-1.0-SNAPSHOT.jar
-
 
 cat <<END
 **************************************************
@@ -34,4 +33,4 @@ Executing the annotation example jar
 ********************************************************
 END
 
-java -jar ./annot-example/target/annot-example-1.0-SNAPSHOT.jar
+java  -jar ./annot-example/target/annot-example-1.0-SNAPSHOT.jar

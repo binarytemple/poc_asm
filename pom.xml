@@ -12,6 +12,7 @@
         <module>example</module>
         <module>annot-example</module>
         <module>scala-example</module>
+        <module>scratch</module>
     </modules>
     <packaging>pom</packaging>
     <name>poc_asm</name>

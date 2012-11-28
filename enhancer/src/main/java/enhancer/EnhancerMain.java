@@ -37,9 +37,15 @@ class Transformer implements ClassFileTransformer {
         }
 
         // dont't profile yourself, or scala
-        if (className.startsWith("profiler") || className.startsWith("scala")) {
+        if (className.startsWith("enhancer") || className.startsWith("scala")) {
             return classfileBuffer;
         }
+
+        // only profile stuff in ie.hunt package for now
+         if (!className.startsWith("ie/hunt") ) {
+            return classfileBuffer;
+        }
+
 
         touched.putIfAbsent(className, true);
 
