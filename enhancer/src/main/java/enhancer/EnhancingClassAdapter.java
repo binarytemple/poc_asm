@@ -25,7 +25,7 @@ public class EnhancingClassAdapter extends ClassAdapter {
 				descriptor, 
 				signature, 
 				exceptions);
-		MethodAdapter ma = new PerfMethodAdapter(mv, className, name);
+		MethodAdapter ma = new EnhancingMethodAdapter(mv, className, name);
 		return ma;
 	}
 	

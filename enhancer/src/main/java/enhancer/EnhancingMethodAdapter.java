@@ -22,7 +22,7 @@ public class EnhancingMethodAdapter extends MethodAdapter {
 		this.visitLdcInsn(_className);
 		this.visitLdcInsn(_methodName);
 		this.visitMethodInsn(INVOKESTATIC, 
-				"profiler/Profile",
+				"enhancer/Enhance",
 				"start", 
 				"(Ljava/lang/String;Ljava/lang/String;)V");
 		
@@ -41,7 +41,7 @@ public class EnhancingMethodAdapter extends MethodAdapter {
 			this.visitLdcInsn(_className);
 			this.visitLdcInsn(_methodName);
 			this.visitMethodInsn(INVOKESTATIC, 
-					"profiler/Profile",
+					"enhancer/Enhance",
 					"end", 
 					"(Ljava/lang/String;Ljava/lang/String;)V");
 			break;
