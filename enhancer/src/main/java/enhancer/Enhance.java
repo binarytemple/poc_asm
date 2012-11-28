@@ -1,6 +1,6 @@
 package profiler;
 
-public class Profile {
+public class Enhance {
 	
 	public static void start(String className, String methodName) {
 		System.out.println(new StringBuilder(className)

@@ -1,4 +1,4 @@
-package profiler;
+package enhancer;
 
 import org.objectweb.asm.MethodAdapter;
 import org.objectweb.asm.MethodVisitor;
@@ -7,12 +7,12 @@ import org.objectweb.asm.Opcodes;
 import static org.objectweb.asm.Opcodes.INVOKESTATIC;
 
 
-public class PerfMethodAdapter extends MethodAdapter {
+public class EnhancingMethodAdapter extends MethodAdapter {
 	private String _className, _methodName;
 	
-	public PerfMethodAdapter(MethodVisitor visitor, 
-			String className,
-			String methodName) { 
+	public EnhancingMethodAdapter(MethodVisitor visitor,
+                                  String className,
+                                  String methodName) {
 		super(visitor);
 		_className = className;
 		_methodName = methodName;

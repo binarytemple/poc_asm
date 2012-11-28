@@ -1,4 +1,4 @@
-package profiler;
+package enhancer;
 
 import org.objectweb.asm.ClassAdapter;
 import org.objectweb.asm.ClassVisitor;
@@ -7,10 +7,10 @@ import org.objectweb.asm.MethodVisitor;
 
 
 
-public class PerfClassAdapter extends ClassAdapter {
+public class EnhancingClassAdapter extends ClassAdapter {
 	private String className;
 	
-	public PerfClassAdapter(ClassVisitor visitor, String theClass) {
+	public EnhancingClassAdapter(ClassVisitor visitor, String theClass) {
 		super(visitor);
 		this.className = theClass;
 	}
