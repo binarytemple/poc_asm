@@ -1,4 +1,4 @@
-package sample.profiler;
+package profiler;
 
 import org.objectweb.asm.ClassAdapter;
 import org.objectweb.asm.ClassReader;

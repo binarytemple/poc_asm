@@ -1,6 +1,5 @@
-package sample.profiler;
+package ie.hunt;
 
-import ie.hunt.AppTest;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -8,16 +7,15 @@ import junit.framework.TestSuite;
 /**
  * Unit test for simple App.
  */
-public class PreMainTest
-        extends TestCase
+public class AppTest 
+    extends TestCase
 {
-
     /**
      * Create the test case
      *
      * @param testName name of the test case
      */
-    public PreMainTest( String testName )
+    public AppTest( String testName )
     {
         super( testName );
     }
@@ -33,7 +31,7 @@ public class PreMainTest
     /**
      * Rigourous Test :-)
      */
-    public void testPremain()
+    public void testApp()
     {
         assertTrue( true );
     }

@@ -1,4 +1,4 @@
-package sample.profiler;
+package profiler;
 
 public class Profile {
 	

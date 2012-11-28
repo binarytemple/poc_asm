@@ -1,4 +1,4 @@
-package sample.profiler;
+package profiler;
 
 import org.objectweb.asm.MethodAdapter;
 import org.objectweb.asm.MethodVisitor;
