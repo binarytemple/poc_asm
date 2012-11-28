@@ -6,8 +6,8 @@
     <artifactId>poc_asm</artifactId>
     <version>1.0-SNAPSHOT</version>
     <modules>
+        <module>profiler</module>
         <module>example</module>
-        <module>enhancer</module>
         <module>scala-example</module>
     </modules>
     <packaging>pom</packaging>
