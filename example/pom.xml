@@ -29,9 +29,9 @@
                             <transformers>
                                 <transformer
                                         implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>ie.hunt.App</mainClass>
+                                    <mainClass>ie.hunt.AppMain</mainClass>
                                     <manifestEntries>
-                                        <Main-Class>ie.hunt.App</Main-Class>
+                                        <Main-Class>ie.hunt.AppMain</Main-Class>
                                     </manifestEntries>
                                 </transformer>
                             </transformers>

@@ -8,6 +8,8 @@ import java.lang.instrument.ClassFileTransformer;
 import java.lang.instrument.IllegalClassFormatException;
 import java.lang.instrument.Instrumentation;
 import java.security.ProtectionDomain;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 
 public class PreMain {
@@ -18,11 +20,18 @@ public class PreMain {
 }
 
 class Transformer implements ClassFileTransformer {
-	
-	public byte[] transform(ClassLoader loader, String className, 
+
+    static final ConcurrentMap<String,Boolean> touched = new ConcurrentHashMap<String,Boolean>();
+
+
+    public byte[] transform(ClassLoader loader, String className,
 			Class<?> classBeingRedefined, ProtectionDomain protectionDomain, 
 			byte[] classfileBuffer) throws IllegalClassFormatException {
-		
+
+        if(touched.containsKey(className)){
+            return classfileBuffer;
+        }
+
 		// can only profile classes that will be able to see
 		// the Profile class which is loaded by the application
 		// classloader
@@ -33,10 +42,12 @@ class Transformer implements ClassFileTransformer {
 		
 		// can't profile yourself
 		//
-		if (className.startsWith("profiler")) {
+		if (className.startsWith("profiler") || className.startsWith("scala")) {
 			return classfileBuffer;
 		}		
-		
+
+        touched.putIfAbsent(className,true);
+
 		ClassReader reader = new ClassReader(classfileBuffer);
 		ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_FRAMES | ClassWriter.COMPUTE_MAXS);
 		ClassAdapter adapter = new PerfClassAdapter(writer, className);

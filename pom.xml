@@ -8,6 +8,7 @@
     <modules>
         <module>example</module>
         <module>enhancer</module>
+        <module>scala-example</module>
     </modules>
     <packaging>pom</packaging>
     <name>poc_asm</name>
