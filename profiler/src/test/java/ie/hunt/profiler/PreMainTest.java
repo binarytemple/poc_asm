@@ -6,7 +6,7 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 /**
- * Unit test for PreMain
+ * Unit test for ProfilerMain
  */
 public class PreMainTest
         extends TestCase

@@ -1,12 +1,15 @@
 package ie.hunt;
 
 /**
- * Hello world!
+ * Run an expensive operation multiple times...
  */
-public class App 
-{
-    public static void main( String[] args )
-    {
-        new Expensive().slowCalculation();
+public class App {
+    public static void main(String[] args) {
+        Expensive expensive = new Expensive();
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 10; j++) {
+                System.out.println(expensive.slowCalculation(i));
+            }
+        }
     }
 }

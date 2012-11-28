@@ -12,7 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 
-public class PreMain {
+public class ProfilerMain {
 
 	public static void premain(String args, Instrumentation inst) {
 		inst.addTransformer(new Transformer());

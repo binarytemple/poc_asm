@@ -12,7 +12,7 @@ public class EnhancingMethodAdapter extends MethodAdapter {
 	
 	public EnhancingMethodAdapter(MethodVisitor visitor,
                                   String className,
-                                  String methodName) {
+                                  String methodName, String descriptor, String signature) {
 		super(visitor);
 		_className = className;
 		_methodName = methodName;
