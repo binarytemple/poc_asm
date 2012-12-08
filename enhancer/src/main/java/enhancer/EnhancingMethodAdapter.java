@@ -25,16 +25,23 @@ public class EnhancingMethodAdapter extends MethodAdapter {
                 "' _signature: '" + ", " + _signature + "'");
     }
 
+
+    @Override
+    public AnnotationVisitor visitAnnotation(String desc, boolean visible) {
+        System.err.println(String.format("visiting annotation:' %s' visible:%b on class:%s , method:%s", desc, visible, _className, _methodName));
+        return super.visitAnnotation(desc, visible);
+    }
+
     @Override
     public void visitAttribute(Attribute attr) {
         System.err.println(attr);
-        super.visitAttribute(attr);    //To change body of overridden methods use File | Settings | File Templates.
+        super.visitAttribute(attr);
     }
 
     @Override
     public void visitMethodInsn(int opcode, String owner, String name, String desc) {
         System.err.println("opcode" + opcode + ", owner: " + owner + ", name:" + name + ", desc" + desc);
-        super.visitMethodInsn(opcode, owner, name, desc);    //To change body of overridden methods use File | Settings | File Templates.
+        super.visitMethodInsn(opcode, owner, name, desc);
     }
 
     @Override

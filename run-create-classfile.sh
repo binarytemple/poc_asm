@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-mvn -q install
+mvn -q install > /dev/null
 
 pushd . 
 cd scratch

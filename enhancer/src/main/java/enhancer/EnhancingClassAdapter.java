@@ -1,14 +1,12 @@
 package enhancer;
 
-import org.objectweb.asm.ClassAdapter;
-import org.objectweb.asm.ClassVisitor;
-import org.objectweb.asm.MethodAdapter;
-import org.objectweb.asm.MethodVisitor;
-
+import org.objectweb.asm.*;
 
 
 public class EnhancingClassAdapter extends ClassAdapter {
 	private String className;
+    private String methodName;
+
 	
 	public EnhancingClassAdapter(ClassVisitor visitor, String theClass) {
 		super(visitor);
@@ -28,5 +26,6 @@ public class EnhancingClassAdapter extends ClassAdapter {
 		MethodAdapter ma = new EnhancingMethodAdapter(mv, className, name,descriptor,signature);
 		return ma;
 	}
-	
+
+
 }

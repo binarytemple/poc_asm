@@ -10,17 +10,22 @@ public class AppMain
 {
 
     public static void main(String[] args) {
+        AppMain am = new AppMain();
         File dir = new File(".");
-        String[] list = dir.list();
-
+        String[] list = am.getFileNames(dir);
         for (String file: list) {
             System.out.println(file);
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
         }
+    }
 
+
+    private String[] getFileNames(File dir) {
+        String[] list = dir.list();
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 }
