@@ -3,7 +3,6 @@ package enhancer;
 import org.objectweb.asm.ClassAdapter;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
-
 import java.lang.instrument.ClassFileTransformer;
 import java.lang.instrument.IllegalClassFormatException;
 import java.lang.instrument.Instrumentation;
@@ -42,14 +41,17 @@ class Transformer implements ClassFileTransformer {
         }
 
         // only profile stuff in ie.hunt package for now
-         if (!className.startsWith("ie/hunt") ) {
+        if (!className.startsWith("ie/hunt")) {
             return classfileBuffer;
         }
 
-
         touched.putIfAbsent(className, true);
-
         ClassReader reader = new ClassReader(classfileBuffer);
+
+        /*
+          How do I make ASM calculate visitMaxs for me?
+          http://asm.ow2.org/doc/faq.html#Q3
+         */
         ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_FRAMES | ClassWriter.COMPUTE_MAXS);
         ClassAdapter adapter = new EnhancingClassAdapter(writer, className);
         reader.accept(adapter, 0);

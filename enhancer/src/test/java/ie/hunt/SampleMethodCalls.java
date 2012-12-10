@@ -1,48 +1,23 @@
 package ie.hunt;
 
+import enhancer.GenericCache;
+import enhancer.MethodKey;
+
 @SuppressWarnings("unused")
 public class SampleMethodCalls {
 
-    public class Human {
-        private final String name;
-        private final int age;
-        public Human(String name, int age){
-            this.name = name;
-            this.age = age;
+    public int getSomeValue(String in) {
+        MethodKey m = new MethodKey("SampleMethodCalls", "getSomeValue", new Object[]{in});
+        Object ret = GenericCache.getValue(m);
+        if (ret != null) {
+            return (Integer) ret;
         }
-        public String getName() {
-            return name;
-        }
-
-        public int getAge() {
-            return age;
+        else {
+            int retval  = 10;
+            GenericCache.setValue(m,retval);
+            return retval;
         }
     }
-
-
-    public int getSomeValue(int in) {
-        return 10;
-    }
-
-    public int getSomeValue(int in, int in2) {
-        return 10;
-    }
-
-    public String getSomeValue(String in, String  in2) {
-        return "dog";
-    }
-
-    public Human getSomeValue(String name, int age) {
-        return new  Human(name,age);
-    }
-
-     public Human getSomeValue(String name, Integer age) {
-        return new  Human(name,age);
-    }
-
-
-
-
 
 
 }
