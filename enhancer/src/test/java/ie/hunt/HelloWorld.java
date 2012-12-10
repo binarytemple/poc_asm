@@ -1,15 +1,44 @@
 package ie.hunt;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class HelloWorld implements GetMessage {
 
+    public String getValue() {
+        InputStream inputStream = null;
+        try {
+            URL url = new URL("http://binarytemple.co.uk");
+            StringBuilder buffer = new StringBuilder();
+            inputStream = url.openStream();
+            InputStreamReader isr = new InputStreamReader(inputStream);
+            char[] input = new char[1024 * 1024];
+            int res;
+            while ((res = isr.read(input)) != -1) {
+                buffer.append(input, 0, res);
+            }
+            return buffer.toString();
+        } catch (Throwable t) {
+            return null;
+        } finally {
+            if (inputStream != null) {
+                try {
+                    inputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
     public String getMessage() {
         return "hello world";
     }
-
 
     public String getRandomMessage() {
         Random random = new Random();

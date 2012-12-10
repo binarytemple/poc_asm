@@ -1,6 +1,9 @@
 package ie.hunt;
 
 public interface GetMessage {
+
+    public String getValue();
+
     public String getMessage();
 
     public String getRandomMessage();
