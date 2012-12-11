@@ -1,8 +1,5 @@
 package ie.hunt;
 
-
-import java.util.*;
-
 import org.objectweb.asm.*;
 
 public class SampleMethodCallsDump implements Opcodes {

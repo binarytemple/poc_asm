@@ -4,7 +4,6 @@ import org.objectweb.asm.*;
 
 import static org.objectweb.asm.Opcodes.INVOKESTATIC;
 
-
 public class EnhancingMethodAdapter extends MethodAdapter {
     private final String _className;
     private final String _methodName;

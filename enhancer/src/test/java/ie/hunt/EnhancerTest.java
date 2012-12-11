@@ -1,16 +1,21 @@
 package ie.hunt;
 
+import enhancer.EnhancingClassAdapter;
 import enhancer.GenericCache;
 import enhancer.MethodKey;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import org.apache.commons.io.IOUtils;
+import org.objectweb.asm.ClassAdapter;
+import org.objectweb.asm.ClassReader;
+import org.objectweb.asm.ClassWriter;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 /**
  * Unit test for simple App.
@@ -53,15 +58,34 @@ public class EnhancerTest
         assertEquals(GenericCache.getValue(m2), mValue2);
     }
 
-    public void enhanceHelloWorld() throws IOException {
+    public void testEnhanceHelloWorld() throws IOException, IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException {
         //TODO: Load into method reader
         InputStream inputStream = HelloWorld.class.getClassLoader().getResourceAsStream("ie/hunt/HelloWorld.class");
         ByteArrayOutputStream ba = new ByteArrayOutputStream();
-        IOUtils.copy(inputStream,ba);
+        IOUtils.copy(inputStream, ba);
         byte[] bytes = ba.toByteArray();
 
+        ClassReader reader = new ClassReader(bytes);
+
+        /*
+          How do I make ASM calculate visitMaxs for me?
+          http://asm.ow2.org/doc/faq.html#Q3
+         */
+        ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_FRAMES | ClassWriter.COMPUTE_MAXS);
+        ClassAdapter adapter = new EnhancingClassAdapter(writer, "ie.hunt.HelloWorld");
+        reader.accept(adapter, 0);
+        final byte[] result = writer.toByteArray();
+
+        Class cc = new ClassLoader() {
+            Class cc = defineClass("ie.hunt.HelloWorld", result, 0, result.length);
+        }.cc;
+
+        Object o = cc.newInstance();
+
+        Method getValue = cc.getMethod("getValue");
+
+        getValue.invoke(o);
 
     }
-
 
 }

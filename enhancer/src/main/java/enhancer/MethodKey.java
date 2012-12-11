@@ -4,7 +4,7 @@ public class MethodKey {
 
     public final String key;
 
-    public MethodKey(String clazz, String methodName, Object[] args){
+    public MethodKey(String clazz, String methodName, Object[] args) {
         StringBuilder sb = new StringBuilder();
         sb.append(clazz);
         sb.append(':');

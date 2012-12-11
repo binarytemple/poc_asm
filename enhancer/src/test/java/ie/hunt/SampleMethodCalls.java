@@ -11,13 +11,11 @@ public class SampleMethodCalls {
         Object ret = GenericCache.getValue(m);
         if (ret != null) {
             return (Integer) ret;
-        }
-        else {
-            int retval  = 10;
-            GenericCache.setValue(m,retval);
+        } else {
+            int retval = 10;
+            GenericCache.setValue(m, retval);
             return retval;
         }
     }
-
 
 }

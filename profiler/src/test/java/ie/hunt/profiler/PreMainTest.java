@@ -9,32 +9,28 @@ import junit.framework.TestSuite;
  * Unit test for ProfilerMain
  */
 public class PreMainTest
-        extends TestCase
-{
+        extends TestCase {
 
     /**
      * Create the test case
      *
      * @param testName name of the test case
      */
-    public PreMainTest( String testName )
-    {
-        super( testName );
+    public PreMainTest(String testName) {
+        super(testName);
     }
 
     /**
      * @return the suite of tests being tested
      */
-    public static Test suite()
-    {
-        return new TestSuite( PreMainTest.class );
+    public static Test suite() {
+        return new TestSuite(PreMainTest.class);
     }
 
     /**
      * Rigourous Test :-)
      */
-    public void testPremain()
-    {
+    public void testPremain() {
         Assert.assertTrue(true);
     }
 }

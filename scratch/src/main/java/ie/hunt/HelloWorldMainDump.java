@@ -1,16 +1,13 @@
 package ie.hunt;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
 import org.objectweb.asm.*;
 
 import java.io.File;
 
-import org.apache.commons.io.FileUtils;
-
 public class HelloWorldMainDump implements Opcodes {
 
-     public static void main(String [] args ) throws Exception {
+    public static void main(String[] args) throws Exception {
         byte[] data = HelloWorldMainDump.dump();
         FileUtils.deleteDirectory(new File("/tmp/ie"));
         FileUtils.forceMkdir(new File("/tmp/ie/hunt"));

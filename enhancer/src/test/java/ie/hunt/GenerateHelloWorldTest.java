@@ -1,8 +1,8 @@
 package ie.hunt;
 
 import junit.framework.Assert;
-import org.junit.*;
-import sun.plugin.navig.motif.OJIPlugin;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
 import java.lang.reflect.Method;
 

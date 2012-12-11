@@ -1,18 +1,16 @@
 package ie.hunt;
 
+import org.apache.commons.io.FileUtils;
 import org.objectweb.asm.*;
-import org.apache.commons.io.*;
 
 import java.io.File;
 
-
 public class ScratchSampleDAODumperMain implements Opcodes {
 
-    public static void main(String [] args ) throws Exception {
+    public static void main(String[] args) throws Exception {
         byte[] data = ScratchSampleDAODumperMain.dump();
-        FileUtils.writeByteArrayToFile(new File("/tmp/ScratchSampleDao.class"),data);
+        FileUtils.writeByteArrayToFile(new File("/tmp/ScratchSampleDao.class"), data);
     }
-
 
     public static byte[] dump() throws Exception {
         ClassWriter cw = new ClassWriter(0);

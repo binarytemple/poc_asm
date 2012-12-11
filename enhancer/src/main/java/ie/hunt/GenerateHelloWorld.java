@@ -1,7 +1,5 @@
 package ie.hunt;
 
-import java.util.*;
-
 import org.objectweb.asm.*;
 
 public class GenerateHelloWorld implements Opcodes {
