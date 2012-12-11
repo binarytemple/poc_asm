@@ -1,6 +1,5 @@
 package ie.hunt;
 
-
 import java.util.*;
 
 import org.objectweb.asm.*;
@@ -161,6 +160,104 @@ public class GenerateHelloWorld implements Opcodes {
             mv.visitMaxs(4, 11);
             mv.visitEnd();
         }
+
+        {
+            mv = cw.visitMethod(ACC_PUBLIC, "multiParamCall", "(ILjava/lang/String;Ljava/lang/Object;Ljava/lang/Long;ZLjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ljava/lang/Object;", null, null);
+            mv.visitCode();
+            mv.visitTypeInsn(NEW, "java/util/ArrayList");
+            mv.visitInsn(DUP);
+            mv.visitMethodInsn(INVOKESPECIAL, "java/util/ArrayList", "<init>", "()V");
+            mv.visitVarInsn(ASTORE, 17);
+            mv.visitVarInsn(ALOAD, 17);
+            mv.visitVarInsn(ILOAD, 1);
+            mv.visitMethodInsn(INVOKESTATIC, "java/lang/Integer", "valueOf", "(I)Ljava/lang/Integer;");
+            mv.visitMethodInsn(INVOKEVIRTUAL, "java/util/ArrayList", "add", "(Ljava/lang/Object;)Z");
+            mv.visitInsn(POP);
+            mv.visitVarInsn(ALOAD, 17);
+            mv.visitVarInsn(ALOAD, 2);
+            mv.visitMethodInsn(INVOKEVIRTUAL, "java/util/ArrayList", "add", "(Ljava/lang/Object;)Z");
+            mv.visitInsn(POP);
+            mv.visitVarInsn(ALOAD, 17);
+            mv.visitVarInsn(ALOAD, 3);
+            mv.visitMethodInsn(INVOKEVIRTUAL, "java/util/ArrayList", "add", "(Ljava/lang/Object;)Z");
+            mv.visitInsn(POP);
+            mv.visitVarInsn(ALOAD, 17);
+            mv.visitVarInsn(ALOAD, 4);
+            mv.visitMethodInsn(INVOKEVIRTUAL, "java/util/ArrayList", "add", "(Ljava/lang/Object;)Z");
+            mv.visitInsn(POP);
+            mv.visitVarInsn(ALOAD, 17);
+            mv.visitVarInsn(ILOAD, 5);
+            mv.visitMethodInsn(INVOKESTATIC, "java/lang/Boolean", "valueOf", "(Z)Ljava/lang/Boolean;");
+            mv.visitMethodInsn(INVOKEVIRTUAL, "java/util/ArrayList", "add", "(Ljava/lang/Object;)Z");
+            mv.visitInsn(POP);
+            mv.visitVarInsn(ALOAD, 17);
+            mv.visitVarInsn(ALOAD, 6);
+            mv.visitMethodInsn(INVOKEVIRTUAL, "java/util/ArrayList", "add", "(Ljava/lang/Object;)Z");
+            mv.visitInsn(POP);
+            mv.visitVarInsn(ALOAD, 17);
+            mv.visitVarInsn(ALOAD, 7);
+            mv.visitMethodInsn(INVOKEVIRTUAL, "java/util/ArrayList", "add", "(Ljava/lang/Object;)Z");
+            mv.visitInsn(POP);
+            mv.visitVarInsn(ALOAD, 17);
+            mv.visitVarInsn(ALOAD, 8);
+            mv.visitMethodInsn(INVOKEVIRTUAL, "java/util/ArrayList", "add", "(Ljava/lang/Object;)Z");
+            mv.visitInsn(POP);
+            mv.visitVarInsn(ALOAD, 17);
+            mv.visitVarInsn(ALOAD, 9);
+            mv.visitMethodInsn(INVOKEVIRTUAL, "java/util/ArrayList", "add", "(Ljava/lang/Object;)Z");
+            mv.visitInsn(POP);
+            mv.visitVarInsn(ALOAD, 17);
+            mv.visitVarInsn(ALOAD, 10);
+            mv.visitMethodInsn(INVOKEVIRTUAL, "java/util/ArrayList", "add", "(Ljava/lang/Object;)Z");
+            mv.visitInsn(POP);
+            mv.visitVarInsn(ALOAD, 17);
+            mv.visitVarInsn(ALOAD, 11);
+            mv.visitMethodInsn(INVOKEVIRTUAL, "java/util/ArrayList", "add", "(Ljava/lang/Object;)Z");
+            mv.visitInsn(POP);
+            mv.visitVarInsn(ALOAD, 17);
+            mv.visitVarInsn(ALOAD, 12);
+            mv.visitMethodInsn(INVOKEVIRTUAL, "java/util/ArrayList", "add", "(Ljava/lang/Object;)Z");
+            mv.visitInsn(POP);
+            mv.visitVarInsn(ALOAD, 17);
+            mv.visitVarInsn(ALOAD, 13);
+            mv.visitMethodInsn(INVOKEVIRTUAL, "java/util/ArrayList", "add", "(Ljava/lang/Object;)Z");
+            mv.visitInsn(POP);
+            mv.visitVarInsn(ALOAD, 17);
+            mv.visitVarInsn(ALOAD, 14);
+            mv.visitMethodInsn(INVOKEVIRTUAL, "java/util/ArrayList", "add", "(Ljava/lang/Object;)Z");
+            mv.visitInsn(POP);
+            mv.visitVarInsn(ALOAD, 17);
+            mv.visitVarInsn(ALOAD, 15);
+            mv.visitMethodInsn(INVOKEVIRTUAL, "java/util/ArrayList", "add", "(Ljava/lang/Object;)Z");
+            mv.visitInsn(POP);
+            mv.visitVarInsn(ALOAD, 17);
+            mv.visitVarInsn(ALOAD, 16);
+            mv.visitMethodInsn(INVOKEVIRTUAL, "java/util/ArrayList", "add", "(Ljava/lang/Object;)Z");
+            mv.visitInsn(POP);
+            mv.visitFieldInsn(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
+            mv.visitInsn(ICONST_3);
+            mv.visitTypeInsn(ANEWARRAY, "java/lang/Object");
+            mv.visitInsn(DUP);
+            mv.visitInsn(ICONST_0);
+            mv.visitLdcInsn("HelloWorld");
+            mv.visitInsn(AASTORE);
+            mv.visitInsn(DUP);
+            mv.visitInsn(ICONST_1);
+            mv.visitLdcInsn("multiParamCall");
+            mv.visitInsn(AASTORE);
+            mv.visitInsn(DUP);
+            mv.visitInsn(ICONST_2);
+            mv.visitVarInsn(ALOAD, 17);
+            mv.visitInsn(AASTORE);
+            mv.visitMethodInsn(INVOKEVIRTUAL, "java/io/PrintStream", "println", "(Ljava/lang/Object;)V");
+            mv.visitTypeInsn(NEW, "java/lang/Object");
+            mv.visitInsn(DUP);
+            mv.visitMethodInsn(INVOKESPECIAL, "java/lang/Object", "<init>", "()V");
+            mv.visitInsn(ARETURN);
+            mv.visitMaxs(5, 18);
+            mv.visitEnd();
+        }
+
         {
             mv = cw.visitMethod(ACC_PUBLIC, "getMessage", "()Ljava/lang/String;", null, null);
             mv.visitCode();

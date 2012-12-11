@@ -5,6 +5,12 @@ import enhancer.MethodKey;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
+import org.apache.commons.io.IOUtils;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * Unit test for simple App.
@@ -46,4 +52,16 @@ public class EnhancerTest
         assertEquals(GenericCache.getValue(m1), mValue1);
         assertEquals(GenericCache.getValue(m2), mValue2);
     }
+
+    public void enhanceHelloWorld() throws IOException {
+        //TODO: Load into method reader
+        InputStream inputStream = HelloWorld.class.getClassLoader().getResourceAsStream("ie/hunt/HelloWorld.class");
+        ByteArrayOutputStream ba = new ByteArrayOutputStream();
+        IOUtils.copy(inputStream,ba);
+        byte[] bytes = ba.toByteArray();
+
+
+    }
+
+
 }

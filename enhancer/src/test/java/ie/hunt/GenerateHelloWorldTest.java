@@ -2,6 +2,7 @@ package ie.hunt;
 
 import junit.framework.Assert;
 import org.junit.*;
+import sun.plugin.navig.motif.OJIPlugin;
 
 import java.lang.reflect.Method;
 
@@ -25,6 +26,22 @@ public class GenerateHelloWorldTest {
     }
 
     @Test
+    public void testMultiParamCall() throws Exception {
+        GetMessage gm = (GetMessage) clazz.newInstance();
+        gm.multiParamCall
+                (
+                        1, "b",
+                        new Object(), 1l,
+                        false, "sc1",
+                        "sd1", "se1",
+                        "sf1", "sg1",
+                        "sh1", "si1",
+                        "sj1", "sb1",
+                        "sk1", "sl1"
+                );
+    }
+
+    @Test
     public void testDump() throws Exception {
         GetMessage gm = (GetMessage) clazz.newInstance();
         Assert.assertEquals("must equal 'hello world'", "hello world", gm.getMessage());
@@ -37,4 +54,5 @@ public class GenerateHelloWorldTest {
         Method getMessage = clazz.getMethod("getMessage");
         Assert.assertEquals("must equal 'hello world'", "hello world", getMessage.invoke(o));
     }
+
 }
