@@ -24,7 +24,8 @@ public class EG2/*@bgen(jjtree)*/implements EG2TreeConstants, EG2Constants {/*@b
     System.err.println("glob: " + glob + " -> " + alias);
     if (!identifiers.containsKey(alias.image))
     {
-      return new ParseException("missing alias id:" + alias + "at line:" + token.beginLine + ", column:" + token.beginColumn);
+      return new ParseException("Missing alias '" + alias + "' at line:" +
+      token.beginLine + ", column:" + token.beginColumn);
     }
     else
     {
