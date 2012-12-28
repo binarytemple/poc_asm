@@ -19,19 +19,20 @@ public class EG2/*@bgen(jjtree)*/implements EG2TreeConstants, EG2Constants {/*@b
       identifiers.put(id, fqcn);
     }
   }
-    public void saveGlobMap(String glob, String alias) throws ParseException
+    public ParseException saveGlobMap(String glob, String alias)
   {
 
       System.err.println("glob: " + glob + " -> " + alias);
 
-    if (!identifiers.containsKey(glob))
+    if (!identifiers.containsKey(alias))
     {
-      throw new ParseException("missing alias id:" + alias);
+      return new ParseException("missing alias id:" + alias);
     }
     else
     {
       globMapping.put(glob, alias);
     }
+    return null;
   }
 
 
@@ -258,7 +259,8 @@ public class EG2/*@bgen(jjtree)*/implements EG2TreeConstants, EG2Constants {/*@b
     jjtree.closeNodeScope(jjtn000, true);
     jjtc000 = false;
     jjtn000.jjtSetLastToken(getToken(0));
-    saveGlobMap(glob,alias);
+    ParseException p = saveGlobMap(glob,alias);
+    if(p != null) {if (true) throw p;}
     } finally {
     if (jjtc000) {
       jjtree.closeNodeScope(jjtn000, true);

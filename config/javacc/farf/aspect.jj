@@ -11,19 +11,20 @@
 /*@egen*/  java.util.Map < String, String > identifiers = new java.util.HashMap < String, String > ();
   java.util.Map < String, String > globMapping = new java.util.HashMap < String, String > ();
     public void saveAlias(String id, String fqcn)  {    System.err.println("Encountered identifer:" + id + " -> " + fqcn);    if (identifiers.containsKey(id))    {      throw new RuntimeException("duplicate alias id:" + id);    }    else    {      identifiers.put(id, fqcn);    }  }
-    public void saveGlobMap(String glob, String alias) throws ParseException
+    public ParseException saveGlobMap(String glob, String alias)  
   {
     
       System.err.println("glob: " + glob + " -> " + alias);
       
-    if (!identifiers.containsKey(glob))
+    if (!identifiers.containsKey(alias))
     {
-      throw new ParseException("missing alias id:" + alias);
+      return new ParseException("missing alias id:" + alias);
     }
     else
     {
       globMapping.put(glob, alias);
     }
+    return null;
   }
 
   public static void main(String args []) throws IOException  {    java.io.InputStream is = null;    try    {      is = foo.Util.readFile("sample/aspects.conf");      EG2 parser = new EG2(is);      try      {        SimpleNode n = parser.Start();        n.dump("");        System.out.println("Thank you.");      }      catch (Exception e)      {        System.out.println("Oops.");        System.out.println(e.getMessage());      }    }    finally    {      is.close();    }  }}PARSER_END(EG2)SKIP :{  " "| "\t"| "\n"| "\r"| < "//" (~[ "\n", "\r" ])*    (      "\n"    | "\r"    | "\r\n"    ) >| < "/*" (~[ "*" ])* "*"    (      ~[ "/" ] (~[ "*" ])* "*"    )*    "/" >}TOKEN :{  < OPEN_BRACE : "{" >| < CLOSE_BRACE : "}" >| < OPEN_PAREN : "(" >| < CLOSE_PAREN : ")" >}TOKEN [ IGNORE_CASE ] :{  < LET : "let" >| < IN : "in" >| < MAPTO : "->" >| < NI : "ni" >| < ALIASES : "aliases" > //: IN_ALIASES
@@ -180,7 +181,8 @@
     jjtn000.jjtSetLastToken(getToken(0));
   }
 /*@egen*/  {   
-    saveGlobMap(glob,alias);  }/*@bgen(jjtree)*/
+    ParseException p = saveGlobMap(glob,alias);
+    if(p != null) throw p;  }/*@bgen(jjtree)*/
   } finally {
     if (jjtc000) {
       jjtree.closeNodeScope(jjtn000, true);
