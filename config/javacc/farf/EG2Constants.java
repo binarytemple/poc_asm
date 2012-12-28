@@ -11,41 +11,45 @@ public interface EG2Constants {
   /** End of File. */
   int EOF = 0;
   /** RegularExpression Id. */
-  int OPEN_PAREN = 7;
+  int OPEN_BRACE = 7;
   /** RegularExpression Id. */
-  int CLOSE_PAREN = 8;
+  int CLOSE_BRACE = 8;
   /** RegularExpression Id. */
-  int LET = 9;
+  int OPEN_PAREN = 9;
   /** RegularExpression Id. */
-  int IN = 10;
+  int CLOSE_PAREN = 10;
   /** RegularExpression Id. */
-  int MAPTO = 11;
+  int LET = 11;
   /** RegularExpression Id. */
-  int NI = 12;
+  int IN = 12;
   /** RegularExpression Id. */
-  int ALIASES = 13;
+  int MAPTO = 13;
   /** RegularExpression Id. */
-  int MATCHERS = 14;
+  int NI = 14;
   /** RegularExpression Id. */
-  int INTEGER_LITERAL = 15;
+  int ALIASES = 15;
   /** RegularExpression Id. */
-  int DECIMAL_LITERAL = 16;
+  int MATCHERS = 16;
   /** RegularExpression Id. */
-  int HEX_LITERAL = 17;
+  int INTEGER_LITERAL = 17;
   /** RegularExpression Id. */
-  int OCTAL_LITERAL = 18;
+  int DECIMAL_LITERAL = 18;
   /** RegularExpression Id. */
-  int IDENTIFIER = 19;
+  int HEX_LITERAL = 19;
   /** RegularExpression Id. */
-  int LETTER = 20;
+  int OCTAL_LITERAL = 20;
   /** RegularExpression Id. */
-  int DIGIT = 21;
+  int IDENTIFIER = 21;
   /** RegularExpression Id. */
-  int GLOB = 22;
+  int LETTER = 22;
   /** RegularExpression Id. */
-  int FQCN = 23;
+  int DIGIT = 23;
   /** RegularExpression Id. */
-  int METHOD_GLOB = 24;
+  int GLOB = 24;
+  /** RegularExpression Id. */
+  int FQCN = 25;
+  /** RegularExpression Id. */
+  int METHOD_GLOB = 26;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -61,6 +65,8 @@ public interface EG2Constants {
     "<token of kind 6>",
     "\"{\"",
     "\"}\"",
+    "\"(\"",
+    "\")\"",
     "\"let\"",
     "\"in\"",
     "\"->\"",
