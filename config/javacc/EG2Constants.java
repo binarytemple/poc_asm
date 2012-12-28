@@ -13,27 +13,31 @@ public interface EG2Constants {
   /** RegularExpression Id. */
   int IN = 8;
   /** RegularExpression Id. */
-  int NI = 9;
+  int MAPTO = 9;
   /** RegularExpression Id. */
-  int ALIASES = 10;
+  int NI = 10;
   /** RegularExpression Id. */
-  int MATCHERS = 11;
+  int ALIASES = 11;
   /** RegularExpression Id. */
-  int INTEGER_LITERAL = 12;
+  int MATCHERS = 12;
   /** RegularExpression Id. */
-  int DECIMAL_LITERAL = 13;
+  int INTEGER_LITERAL = 13;
   /** RegularExpression Id. */
-  int HEX_LITERAL = 14;
+  int DECIMAL_LITERAL = 14;
   /** RegularExpression Id. */
-  int OCTAL_LITERAL = 15;
+  int HEX_LITERAL = 15;
   /** RegularExpression Id. */
-  int IDENTIFIER = 16;
+  int OCTAL_LITERAL = 16;
   /** RegularExpression Id. */
-  int LETTER = 17;
+  int IDENTIFIER = 17;
   /** RegularExpression Id. */
-  int DIGIT = 18;
+  int LETTER = 18;
   /** RegularExpression Id. */
-  int FQMN = 19;
+  int DIGIT = 19;
+  /** RegularExpression Id. */
+  int FQCN = 20;
+  /** RegularExpression Id. */
+  int METHOD_GLOB = 21;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -49,6 +53,7 @@ public interface EG2Constants {
     "<token of kind 6>",
     "\"let\"",
     "\"in\"",
+    "\"->\"",
     "\"ni\"",
     "\"aliases\"",
     "\"matchers\"",
@@ -59,10 +64,12 @@ public interface EG2Constants {
     "<IDENTIFIER>",
     "<LETTER>",
     "<DIGIT>",
-    "<FQMN>",
+    "<FQCN>",
+    "<METHOD_GLOB>",
     "\"{\"",
     "\"}\"",
     "\"=\"",
+    "\";\"",
   };
 
 }

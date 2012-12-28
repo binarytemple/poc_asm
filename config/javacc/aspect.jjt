@@ -1,52 +1,4 @@
 /**
  * JJTree template file created by SF JavaCC plugin 1.5.17+ wizard for JavaCC 1.5.0+
- */options{  JDK_VERSION = "1.5";
-  TRACK_TOKENS =  true;
-  
-    static = false;}PARSER_BEGIN(EG2)import java.io.IOException;
-public class EG2{  public static void main(String args [])throws IOException  {   	java.io.InputStream is = null;
-	try	{
-	  	is = Util.readFile("test/aspects.conf");	    EG2 parser = new EG2(is);	    try	    {	      SimpleNode n = parser.Start();	      n.dump("");	      System.out.println("Thank you.");	    }	    catch (Exception e)	    {	      System.out.println("Oops.");	      System.out.println(e.getMessage());	    }
-	}
-	finally    {
-      is.close();    }  }}PARSER_END(EG2)SKIP :{  " "| "\t"| "\n"| "\r"| < "//" (~[ "\n", "\r" ])*    (      "\n"    | "\r"    | "\r\n"    ) >| < "/*" (~[ "*" ])* "*"    (      ~[ "/" ] (~[ "*" ])* "*"    )*    "/" >}
-TOKEN [IGNORE_CASE]: {
-  < LET: "let">
-| < IN: "in">
-| < NI: "ni">
-| < ALIASES: "aliases">
-| < MATCHERS: "matchers">
-}
-
-TOKEN : /* LITERALS */{  < INTEGER_LITERAL :    < DECIMAL_LITERAL > ([ "l", "L" ])?  | < HEX_LITERAL > ([ "l", "L" ])?  | < OCTAL_LITERAL > ([ "l", "L" ])?     >| < #DECIMAL_LITERAL : [ "1"-"9" ] ([ "0"-"9" ])* >| < #HEX_LITERAL : "0" [ "x", "X" ] ([ "0"-"9", "a"-"f", "A"-"F" ])+ >| < #OCTAL_LITERAL : "0" ([ "0"-"7" ])* >}
-TOKEN : 
-{
-  <IDENTIFIER  :
-    < LETTER >
-    (
-      < LETTER >
-    | < DIGIT >
-    )* >
-| < #LETTER : [ "_", "a"-"z", "A"-"Z" ] >
-| < #DIGIT : [ "0"-"9" ] >
-}
-TOKEN : {  < FQMN :    < LETTER >    (      < LETTER >    | < DIGIT >
-    | "."    )*
-"." < IDENTIFIER > "(" ")" ";"
-    >}SimpleNode Start() :{}{  Expression()   {    return jjtThis;  }}void Expression() :{}{ 	AliasSection()
-}
-
-void AliasSection()  :
-{}
-{
- 	< ALIASES >  "{"
-    (      Alias())*
-       "}" 
-}
-
-void Alias()  :
-{}
-{
- 	 < IDENTIFIER > "=" < FQMN >
-}
-////void AdditiveExpression() ://{}//{//  MultiplicativeExpression()//  (//    (//      "+"//    | "-"//    )//    MultiplicativeExpression()//  )*//}////void MultiplicativeExpression() ://{}//{//  UnaryExpression()//  (//    (//      "*"//    | "/"//    | "%"//    )//    UnaryExpression()//  )*//}////void UnaryExpression() ://{}//{//  "(" Expression() ")"//| Identifier()//| Integer()//}////void Identifier() ://{}//{//  < IDENTIFIER >//}////void Integer() ://{}//{//  < INTEGER_LITERAL >//}
+ */options{  JDK_VERSION = "1.5";  TRACK_TOKENS = true;  static = false;}PARSER_BEGIN(EG2)import java.io.IOException;public class EG2{  public static void main(String args []) throws IOException  {    java.io.InputStream is = null;    try    {      is = Util.readFile("test/aspects.conf");      EG2 parser = new EG2(is);      try      {        SimpleNode n = parser.Start();        n.dump("");        System.out.println("Thank you.");      }      catch (Exception e)      {        System.out.println("Oops.");        System.out.println(e.getMessage());      }    }    finally    {      is.close();    }  }}PARSER_END(EG2)SKIP :{  " "| "\t"| "\n"| "\r"| < "//" (~[ "\n", "\r" ])*    (      "\n"    | "\r"    | "\r\n"    ) >| < "/*" (~[ "*" ])* "*"    (      ~[ "/" ] (~[ "*" ])* "*"    )*    "/" >}TOKEN [ IGNORE_CASE ] :{  < LET : "let" >| < IN : "in" >| < MAPTO : "->" >| < NI : "ni" >| < ALIASES : "aliases" >| < MATCHERS : "matchers" >}TOKEN : /* LITERALS */{  < INTEGER_LITERAL :    < DECIMAL_LITERAL > ([ "l", "L" ])?  | < HEX_LITERAL > ([ "l", "L" ])?  | < OCTAL_LITERAL > ([ "l", "L" ])? >| < #DECIMAL_LITERAL : [ "1"-"9" ] ([ "0"-"9" ])* >| < #HEX_LITERAL : "0" [ "x", "X" ] ([ "0"-"9", "a"-"f", "A"-"F" ])+ >| < #OCTAL_LITERAL : "0" ([ "0"-"7" ])* >}TOKEN :{  < IDENTIFIER :    < LETTER >    (      < LETTER >    | < DIGIT >    )* >| < #LETTER : [ "_", "a"-"z", "A"-"Z" ] >| < #DIGIT : [ "0"-"9" ] >}TOKEN :{  < FQCN :     (< IDENTIFIER > ".")* < IDENTIFIER >    >}TOKEN :{  < METHOD_GLOB :    (      < IDENTIFIER >    |      (        (          < IDENTIFIER >        | "*"        | "**"        )        "."      )+      < IDENTIFIER >    )    "." < IDENTIFIER > "(" ("*")* ")" ";"     >}SimpleNode Start() :{}{  Expression()  {    return jjtThis;  }}void Expression() :{}{  AliasSection() MatchersSection()}void AliasSection() :{}{  < ALIASES > "{"  (    Alias()  )*  "}"}void Alias() :{}{  < IDENTIFIER > "=" < FQCN >}void MatchersSection() :{}{  //ie.hunt.**.Persister.save*(*) -> dave;
+  (< METHOD_GLOB > < MAPTO > < IDENTIFIER > ";")*}void GlobPattern() :{}{  < METHOD_GLOB >}

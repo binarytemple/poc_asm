@@ -5,6 +5,8 @@ public interface EG2TreeConstants
   public int JJTEXPRESSION = 1;
   public int JJTALIASSECTION = 2;
   public int JJTALIAS = 3;
+  public int JJTMATCHERSSECTION = 4;
+  public int JJTGLOBPATTERN = 5;
 
 
   public String[] jjtNodeName = {
@@ -12,6 +14,8 @@ public interface EG2TreeConstants
     "Expression",
     "AliasSection",
     "Alias",
+    "MatchersSection",
+    "GlobPattern",
   };
 }
-/* JavaCC - OriginalChecksum=039b27e4f76c870a0583c7ba61594eed (do not edit this line) */
+/* JavaCC - OriginalChecksum=b4624b56757547abcd943ded848ddf41 (do not edit this line) */
