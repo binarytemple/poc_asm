@@ -6,36 +6,32 @@ public class EG2/*@bgen(jjtree)*/implements EG2TreeConstants, EG2Constants {/*@b
   protected JJTEG2State jjtree = new JJTEG2State();java.util.Map < String, String > identifiers = new java.util.HashMap < String, String > ();
   java.util.Map < String, String > globMapping = new java.util.HashMap < String, String > ();
 
-
-  public void saveAlias(String id, String fqcn)
+  public void saveAlias(Token id, Token fqcn)
   {
     System.err.println("Encountered identifer:" + id + " -> " + fqcn);
-    if (identifiers.containsKey(id))
+    if (identifiers.containsKey(id.image))
     {
       throw new RuntimeException("duplicate alias id:" + id);
     }
     else
     {
-      identifiers.put(id, fqcn);
+      identifiers.put(id.image, fqcn.image);
     }
   }
-    public ParseException saveGlobMap(String glob, String alias)
+
+  public ParseException saveGlobMap(Token glob, Token alias)
   {
-
-      System.err.println("glob: " + glob + " -> " + alias);
-
-    if (!identifiers.containsKey(alias))
+    System.err.println("glob: " + glob + " -> " + alias);
+    if (!identifiers.containsKey(alias.image))
     {
-      return new ParseException("missing alias id:" + alias);
+      return new ParseException("missing alias id:" + alias + "at line:" + token.beginLine + ", column:" + token.beginColumn);
     }
     else
     {
-      globMapping.put(glob, alias);
+      globMapping.put(glob.image, alias.image);
     }
     return null;
   }
-
-
 
   public static void main(String args []) throws IOException
   {
@@ -221,14 +217,14 @@ public class EG2/*@bgen(jjtree)*/implements EG2TreeConstants, EG2Constants {/*@b
   SimpleNode jjtn000 = new SimpleNode(JJTALIAS);
   boolean jjtc000 = true;
   jjtree.openNodeScope(jjtn000);
-  jjtn000.jjtSetFirstToken(getToken(1));String id = null;
-  String fqcn = null;
+  jjtn000.jjtSetFirstToken(getToken(1));Token id = null;
+  Token fqcn = null;
     try {
       jj_consume_token(IDENTIFIER);
-    id = token.image;
+    id = token;
       jj_consume_token(27);
       jj_consume_token(FQCN);
-    fqcn = token.image;
+    fqcn = token;
       jj_consume_token(28);
     jjtree.closeNodeScope(jjtn000, true);
     jjtc000 = false;
@@ -247,20 +243,20 @@ public class EG2/*@bgen(jjtree)*/implements EG2TreeConstants, EG2Constants {/*@b
   SimpleNode jjtn000 = new SimpleNode(JJTMATCHER);
   boolean jjtc000 = true;
   jjtree.openNodeScope(jjtn000);
-  jjtn000.jjtSetFirstToken(getToken(1));String glob = null;
-  String alias = null;
+  jjtn000.jjtSetFirstToken(getToken(1));Token glob = null;
+  Token alias = null;
     try {
       jj_consume_token(METHOD_GLOB);
-    glob = token.image;
+    glob = token;
       jj_consume_token(MAPTO);
       jj_consume_token(IDENTIFIER);
-    alias = token.image;
+    alias = token;
       jj_consume_token(28);
     jjtree.closeNodeScope(jjtn000, true);
     jjtc000 = false;
     jjtn000.jjtSetLastToken(getToken(0));
-    ParseException p = saveGlobMap(glob,alias);
-    if(p != null) {if (true) throw p;}
+    ParseException p = saveGlobMap(glob, alias);
+    if (p != null) {if (true) throw p;}
     } finally {
     if (jjtc000) {
       jjtree.closeNodeScope(jjtn000, true);
