@@ -3,12 +3,45 @@ package farf;
 import java.io.IOException;
 
 public class EG2/*@bgen(jjtree)*/implements EG2TreeConstants, EG2Constants {/*@bgen(jjtree)*/
-  protected JJTEG2State jjtree = new JJTEG2State();public static void main(String args []) throws IOException
+  protected JJTEG2State jjtree = new JJTEG2State();java.util.Map < String, String > identifiers = new java.util.HashMap < String, String > ();
+  java.util.Map < String, String > globMapping = new java.util.HashMap < String, String > ();
+
+
+  public void saveAlias(String id, String fqcn)
+  {
+    System.err.println("Encountered identifer:" + id + " -> " + fqcn);
+    if (identifiers.containsKey(id))
+    {
+      throw new RuntimeException("duplicate alias id:" + id);
+    }
+    else
+    {
+      identifiers.put(id, fqcn);
+    }
+  }
+    public void saveGlobMap(String glob, String alias) throws ParseException
+  {
+
+      System.err.println("glob: " + glob + " -> " + alias);
+
+    if (!identifiers.containsKey(glob))
+    {
+      throw new ParseException("missing alias id:" + alias);
+    }
+    else
+    {
+      globMapping.put(glob, alias);
+    }
+  }
+
+
+
+  public static void main(String args []) throws IOException
   {
     java.io.InputStream is = null;
     try
     {
-      is = foo.Util.readFile("test/aspects.conf");
+      is = foo.Util.readFile("sample/aspects.conf");
       EG2 parser = new EG2(is);
       try
       {
@@ -157,7 +190,7 @@ public class EG2/*@bgen(jjtree)*/implements EG2TreeConstants, EG2Constants {/*@b
           jj_la1[1] = jj_gen;
           break label_2;
         }
-        GlobPattern();
+        Matcher();
       }
       jj_consume_token(CLOSE_BRACE);
     } catch (Throwable jjte000) {
@@ -187,12 +220,19 @@ public class EG2/*@bgen(jjtree)*/implements EG2TreeConstants, EG2Constants {/*@b
   SimpleNode jjtn000 = new SimpleNode(JJTALIAS);
   boolean jjtc000 = true;
   jjtree.openNodeScope(jjtn000);
-  jjtn000.jjtSetFirstToken(getToken(1));
+  jjtn000.jjtSetFirstToken(getToken(1));String id = null;
+  String fqcn = null;
     try {
       jj_consume_token(IDENTIFIER);
+    id = token.image;
       jj_consume_token(27);
       jj_consume_token(FQCN);
+    fqcn = token.image;
       jj_consume_token(28);
+    jjtree.closeNodeScope(jjtn000, true);
+    jjtc000 = false;
+    jjtn000.jjtSetLastToken(getToken(0));
+    saveAlias(id, fqcn);
     } finally {
     if (jjtc000) {
       jjtree.closeNodeScope(jjtn000, true);
@@ -201,17 +241,24 @@ public class EG2/*@bgen(jjtree)*/implements EG2TreeConstants, EG2Constants {/*@b
     }
   }
 
-  final public void GlobPattern() throws ParseException {
- /*@bgen(jjtree) GlobPattern */
-  SimpleNode jjtn000 = new SimpleNode(JJTGLOBPATTERN);
+  final public void Matcher() throws ParseException {
+ /*@bgen(jjtree) Matcher */
+  SimpleNode jjtn000 = new SimpleNode(JJTMATCHER);
   boolean jjtc000 = true;
   jjtree.openNodeScope(jjtn000);
-  jjtn000.jjtSetFirstToken(getToken(1));
+  jjtn000.jjtSetFirstToken(getToken(1));String glob = null;
+  String alias = null;
     try {
       jj_consume_token(METHOD_GLOB);
+    glob = token.image;
       jj_consume_token(MAPTO);
       jj_consume_token(IDENTIFIER);
+    alias = token.image;
       jj_consume_token(28);
+    jjtree.closeNodeScope(jjtn000, true);
+    jjtc000 = false;
+    jjtn000.jjtSetLastToken(getToken(0));
+    saveGlobMap(glob,alias);
     } finally {
     if (jjtc000) {
       jjtree.closeNodeScope(jjtn000, true);

@@ -5,4 +5,4 @@ target
 *.class
 *.byte.graph
 *.src.graph
-
+config/bin

@@ -663,10 +663,6 @@ static final long[] jjtoSkip = {
 protected SimpleCharStream input_stream;
 private final int[] jjrounds = new int[31];
 private final int[] jjstateSet = new int[62];
-private final StringBuilder jjimage = new StringBuilder();
-private StringBuilder image = jjimage;
-private int jjimageLen;
-private int lengthOfMatch;
 protected char curChar;
 /** Constructor. */
 public EG2TokenManager(SimpleCharStream stream){
@@ -763,9 +759,6 @@ public Token getNextToken()
       matchedToken = jjFillToken();
       return matchedToken;
    }
-   image = jjimage;
-   image.setLength(0);
-   jjimageLen = 0;
 
    jjmatchedKind = 0x7fffffff;
    jjmatchedPos = 0;
@@ -777,7 +770,6 @@ public Token getNextToken()
       if ((jjtoToken[jjmatchedKind >> 6] & (1L << (jjmatchedKind & 077))) != 0L)
       {
          matchedToken = jjFillToken();
-         TokenLexicalActions(matchedToken);
          return matchedToken;
       }
       else
@@ -808,18 +800,6 @@ public Token getNextToken()
   }
 }
 
-void TokenLexicalActions(Token matchedToken)
-{
-   switch(jjmatchedKind)
-   {
-      case 26 :
-        image.append(input_stream.GetSuffix(jjimageLen + (lengthOfMatch = jjmatchedPos + 1)));
-    System.err.println("hit METHOD_GLOB");
-         break;
-      default :
-         break;
-   }
-}
 private void jjCheckNAdd(int state)
 {
    if (jjrounds[state] != jjround)
