@@ -103,6 +103,7 @@ public class EG2/*@bgen(jjtree)*/implements EG2TreeConstants, EG2Constants {/*@b
     try {
       AliasSection();
       MatchersSection();
+      jj_consume_token(0);
     } catch (Throwable jjte000) {
     if (jjtc000) {
       jjtree.clearNodeScope(jjtn000);

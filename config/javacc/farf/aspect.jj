@@ -52,7 +52,7 @@
   jjtn000.jjtSetFirstToken(getToken(1));
 /*@egen*/}{/*@bgen(jjtree) Expression */
   try {
-/*@egen*/  AliasSection() MatchersSection()/*@bgen(jjtree)*/
+/*@egen*/  AliasSection() MatchersSection() < EOF >/*@bgen(jjtree)*/
   } catch (Throwable jjte000) {
     if (jjtc000) {
       jjtree.clearNodeScope(jjtn000);
