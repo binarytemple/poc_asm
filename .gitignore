@@ -6,3 +6,4 @@ target
 *.byte.graph
 *.src.graph
 config/bin
+*~
