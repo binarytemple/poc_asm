@@ -8,7 +8,7 @@ import java.nio.file.*;
 
 public class HelloWorld {
 
-	ConcurrentMap<String, Object> m = new ConcurrentHashMap<>();
+	ConcurrentMap<String, Object> m = new ConcurrentHashMap<String, Object>();
 
 	/**
 	 * @param args
@@ -66,7 +66,7 @@ public class HelloWorld {
 
 	private int runOp(int i) {
 		if (Cache.hasValue(i)) {
-			return (int) Cache.getValue(i);
+			return (Integer) Cache.getValue(i);
 		} else {
 			int val = 1;
 			val = val++;
