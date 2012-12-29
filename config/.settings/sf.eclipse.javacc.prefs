@@ -1,7 +1,7 @@
 CLEAR_CONSOLE=false
-JAVACC_OPTIONS=-OUTPUT_DIRECTORY\=/common/poc_asm/config/target/generated-sources/javacc/farf
+JAVACC_OPTIONS=-OUTPUT_DIRECTORY\=/common/poc_asm/config/target/generated-sources/javacc/ie/hunt/aop/conf
 JJDOC_OPTIONS=
-JJTREE_OPTIONS=-NODE_PACKAGE\=farf -JJTREE_OUTPUT_DIRECTORY\=/common/poc_asm/config/target/generated-sources/jjtree/farf
+JJTREE_OPTIONS=-JJTREE_OUTPUT_DIRECTORY\=/common/poc_asm/config/target/generated-sources/jjtree/ie/hunt/aop/conf
 JJ_NATURE=true
 JTB_OPTIONS=
 MARK_GEN_FILES_AS_DERIVED=true

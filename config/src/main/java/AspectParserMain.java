@@ -1,7 +1,7 @@
-import java.io.IOException;
+import ie.hunt.aop.conf.AspectConfParser;
+import ie.hunt.aop.conf.SimpleNode;
 
-import farf.EG2;
-import farf.SimpleNode;
+import java.io.IOException;
 
 public class AspectParserMain {
 
@@ -9,7 +9,7 @@ public class AspectParserMain {
 		java.io.InputStream is = null;
 		try {
 			is = foo.Util.readFile("sample/bad-aspects1.conf");
-			EG2 parser = new EG2(is);
+			AspectConfParser parser = new AspectConfParser(is);
 			try {
 				SimpleNode n = parser.Start();
 				n.dump("");
