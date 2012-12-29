@@ -6,6 +6,7 @@
     <artifactId>poc_asm</artifactId>
     <version>1.0-SNAPSHOT</version>
     <modules>
+        <module>config</module>
         <module>profiler</module>
         <module>annot</module>
         <module>enhancer</module>

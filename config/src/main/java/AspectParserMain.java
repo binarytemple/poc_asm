@@ -8,7 +8,7 @@ public class AspectParserMain {
 	public static void main(String args[]) throws IOException {
 		java.io.InputStream is = null;
 		try {
-			is = foo.Util.readFile("sample/aspects.conf");
+			is = foo.Util.readFile("sample/bad-aspects1.conf");
 			EG2 parser = new EG2(is);
 			try {
 				SimpleNode n = parser.Start();
