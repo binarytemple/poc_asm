@@ -15,8 +15,9 @@ import java.util.Map;
 
 /**
  * Bootstrapping the Visitor implementation.
+ * 
  * @author bryan
- *
+ * 
  */
 public class AspectParserVisitingMain {
 
@@ -25,45 +26,52 @@ public class AspectParserVisitingMain {
 		is = foo.Util.readFile("sample/valid-aspects1.conf");
 		AspectConfParser parser = new AspectConfParser(is);
 		SimpleNode n = parser.Start();
-		 n.jjtAccept(new AspectConfParserVisitor() {
-			
+		n.jjtAccept(new AspectConfParserVisitor() {
+
 			@Override
 			public Object visit(ASTMatcher node, Map data) {
+				System.err.println("visiting ASTMatcher :" + node.toString());
 				// TODO Auto-generated method stub
 				return node.childrenAccept(this, data);
 			}
-			
+
 			@Override
 			public Object visit(ASTAlias node, Map data) {
+				System.err.println("visiting ASTAlias :" + node.jjtGetValue());
 				return node.childrenAccept(this, data);
 			}
-			
+
 			@Override
 			public Object visit(ASTMatchersSection node, Map data) {
-				System.err.println("visiting MatchersSection");
+				System.err.println("visiting ASTMatchersSection"
+						+ node.toString());
 				return node.childrenAccept(this, data);
 			}
-			
+
 			@Override
 			public Object visit(ASTAliasSection node, Map data) {
+				System.err.println("visiting ASTAliasSection :" + node.toString());
 				return node.childrenAccept(this, data);
 			}
-			
+
 			@Override
 			public Object visit(ASTExpression node, Map data) {
+				System.err.println("visiting ASTExpression :" + node.toString());
 				return node.childrenAccept(this, data);
 			}
-			
+
 			@Override
 			public Object visit(ASTStart node, Map data) {
+				System.err.println("visiting ASTStart :" + node.toString());
 				return node.childrenAccept(this, data);
 			}
-			
+
 			@Override
 			public Object visit(SimpleNode node, Map data) {
+				System.err.println("visiting SimpleNode :" + node.toString());
 				return node.childrenAccept(this, data);
 			}
-		}, new HashMap<Object,Object>());
+		}, new HashMap<Object, Object>());
 		n.dump("");
 		System.out.println("Thank you.");
 		is.close();
