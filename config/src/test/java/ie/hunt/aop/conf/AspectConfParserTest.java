@@ -1,6 +1,6 @@
 package ie.hunt.aop.conf;
 
-import static org.junit.Assert.*;
+import static org.hamcrest.core.StringStartsWith.startsWith;
 
 import java.io.IOException;
 
@@ -11,8 +11,6 @@ import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-import static org.hamcrest.core.StringStartsWith.startsWith;
-import org.hamcrest.Matcher;
 
 public class AspectConfParserTest {
 

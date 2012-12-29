@@ -1,0 +1,71 @@
+import ie.hunt.aop.conf.ASTAlias;
+import ie.hunt.aop.conf.ASTAliasSection;
+import ie.hunt.aop.conf.ASTExpression;
+import ie.hunt.aop.conf.ASTMatcher;
+import ie.hunt.aop.conf.ASTMatchersSection;
+import ie.hunt.aop.conf.ASTStart;
+import ie.hunt.aop.conf.AspectConfParser;
+import ie.hunt.aop.conf.AspectConfParserVisitor;
+import ie.hunt.aop.conf.ParseException;
+import ie.hunt.aop.conf.SimpleNode;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * Bootstrapping the Visitor implementation.
+ * @author bryan
+ *
+ */
+public class AspectParserVisitingMain {
+
+	public static void main(String args[]) throws IOException, ParseException {
+		java.io.InputStream is = null;
+		is = foo.Util.readFile("sample/valid-aspects1.conf");
+		AspectConfParser parser = new AspectConfParser(is);
+		SimpleNode n = parser.Start();
+		 n.jjtAccept(new AspectConfParserVisitor() {
+			
+			@Override
+			public Object visit(ASTMatcher node, Map data) {
+				// TODO Auto-generated method stub
+				return node.childrenAccept(this, data);
+			}
+			
+			@Override
+			public Object visit(ASTAlias node, Map data) {
+				return node.childrenAccept(this, data);
+			}
+			
+			@Override
+			public Object visit(ASTMatchersSection node, Map data) {
+				System.err.println("visiting MatchersSection");
+				return node.childrenAccept(this, data);
+			}
+			
+			@Override
+			public Object visit(ASTAliasSection node, Map data) {
+				return node.childrenAccept(this, data);
+			}
+			
+			@Override
+			public Object visit(ASTExpression node, Map data) {
+				return node.childrenAccept(this, data);
+			}
+			
+			@Override
+			public Object visit(ASTStart node, Map data) {
+				return node.childrenAccept(this, data);
+			}
+			
+			@Override
+			public Object visit(SimpleNode node, Map data) {
+				return node.childrenAccept(this, data);
+			}
+		}, new HashMap<Object,Object>());
+		n.dump("");
+		System.out.println("Thank you.");
+		is.close();
+	}
+}
