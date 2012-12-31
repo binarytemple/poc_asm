@@ -1,8 +1,11 @@
 import ie.hunt.aop.conf.ASTAlias;
 import ie.hunt.aop.conf.ASTAliasSection;
 import ie.hunt.aop.conf.ASTExpression;
+import ie.hunt.aop.conf.ASTFqcn;
 import ie.hunt.aop.conf.ASTMatcher;
 import ie.hunt.aop.conf.ASTMatchersSection;
+import ie.hunt.aop.conf.ASTMethodGlob;
+import ie.hunt.aop.conf.ASTPath;
 import ie.hunt.aop.conf.ASTStart;
 import ie.hunt.aop.conf.AspectConfParser;
 import ie.hunt.aop.conf.AspectConfParserVisitor;
@@ -69,6 +72,24 @@ public class AspectParserVisitingMain {
 			@Override
 			public Object visit(SimpleNode node, Map data) {
 				System.err.println("visiting SimpleNode :" + node.toString());
+				return node.childrenAccept(this, data);
+			}
+
+			@Override
+			public Object visit(ASTMethodGlob node, Map data) {
+				System.err.println("visiting ASTMethodGlob :" + node.toString());
+				return node.childrenAccept(this, data);
+			}
+
+			@Override
+			public Object visit(ASTPath node, Map data) {
+				System.err.println("visiting ASTPath :" + node.toString());
+				return node.childrenAccept(this, data);
+			}
+
+			@Override
+			public Object visit(ASTFqcn node, Map data) {
+				System.err.println("visiting ASTFqcn :" + node.toString());
 				return node.childrenAccept(this, data);
 			}
 		}, new HashMap<Object, Object>());
