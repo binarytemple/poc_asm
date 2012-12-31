@@ -3,6 +3,7 @@ package ie.hunt.aop.conf;
 import static org.hamcrest.core.StringStartsWith.startsWith;
 
 import java.io.IOException;
+import java.io.StringReader;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -40,6 +41,36 @@ public class AspectConfParserTest {
 		thrown.expectMessage(startsWith("Missing alias"));
 		parseFile("sample/bad-aspects1.conf");
 	}
+	
+	@Test
+	public void testMatcherNonTerminalGoodPatterns() throws Throwable {
+		AspectConfParser parser = new AspectConfParser(new StringReader("nbl.blah.Blah:wee() -> broadcast;"));
+//		thrown.expect(ie.hunt.aop.conf.ParseException.class);
+//		thrown.expectMessage("duplicate alias id:log");
+		parser.saveAlias("broadcast", "fooBroadcast");
+		parser.Matcher();
+		parser.ReInit(new StringReader("nbl.**.Blah:foo() -> broadcast;"));
+		parser.Matcher();
+		parser.ReInit(new StringReader("nbl.*.*.Blah:foo() -> broadcast;"));
+		parser.Matcher();
+		parser.ReInit(new StringReader("nbl.*.*.:*() -> broadcast;"));
+		parser.Matcher();
+		//Foolish, but legal...
+		parser.ReInit(new StringReader("*:*() -> broadcast;"));
+		parser.Matcher();
+		
+//		Node node = parser.jjtree.popNode();
+//		System.err.println(node);
+	}
+	
+	@Test
+	public void testMatcherNonTerminalBadPattern1() throws Throwable {
+		thrown.expect(ie.hunt.aop.conf.ParseException.class);
+		thrown.expectMessage("Encountered \" \"(\" \"( \"\" at line 1");
+		AspectConfParser parser = new AspectConfParser(new StringReader("() -> broadcast;"));
+		parser.saveAlias("broadcast", "fooBroadcast");
+		parser.Matcher();
+	}
 
 	@Test
 	public void testParseWithDuplicateAlias() throws Throwable {
@@ -48,7 +79,7 @@ public class AspectConfParserTest {
 		// thrown.expectMessage(startsWith("Missing alias"));
 		parseFile("sample/bad-aspects2.conf");
 	}
-
+	
 	private void parseFile(String name) throws Exception, IOException {
 		java.io.InputStream is = null;
 		try {
