@@ -41,33 +41,49 @@ public class AspectConfParserTest {
 		thrown.expectMessage(startsWith("Missing alias"));
 		parseFile("sample/bad-aspects1.conf");
 	}
-	
-	@Test
-	public void testMatcherNonTerminalGoodPatterns() throws Throwable {
-		AspectConfParser parser = new AspectConfParser(new StringReader("nbl.blah.Blah:wee() -> broadcast;"));
-//		thrown.expect(ie.hunt.aop.conf.ParseException.class);
-//		thrown.expectMessage("duplicate alias id:log");
+
+	private void parseMatcher(String x) throws ParseException {
+		AspectConfParser parser = new AspectConfParser(new StringReader(x));
 		parser.saveAlias("broadcast", "fooBroadcast");
 		parser.Matcher();
-		parser.ReInit(new StringReader("nbl.**.Blah:foo() -> broadcast;"));
-		parser.Matcher();
-		parser.ReInit(new StringReader("nbl.*.*.Blah:foo() -> broadcast;"));
-		parser.Matcher();
-		parser.ReInit(new StringReader("nbl.*.*.:*() -> broadcast;"));
-		parser.Matcher();
-		//Foolish, but legal...
-		parser.ReInit(new StringReader("*:*() -> broadcast;"));
-		parser.Matcher();
-		
-//		Node node = parser.jjtree.popNode();
-//		System.err.println(node);
 	}
-	
+
+	@Test
+	public void testMatcherNonTerminalSurviveAmbiguity() throws Throwable {
+		parseMatcher("nbl.**.Blah1:wee() -> broadcast;");		
+	}
+
+	@Test
+	public void testMatcherNonTerminalGoodPatterns1() throws Throwable {
+		parseMatcher("nbl.blah.Blah1:wee() -> broadcast;");
+	}
+
+	@Test
+	public void testMatcherNonTerminalGoodPatterns2() throws Throwable {
+		parseMatcher("nbl.*.*.Blah3:foo() -> broadcast;");
+	}
+
+	@Test
+	public void testMatcherNonTerminalGoodPatterns3() throws Throwable {
+		parseMatcher("nb2.*.*.*:foo() -> broadcast;");
+	}
+
+	@Test
+	public void testMatcherNonTerminalGoodPatterns4() throws Throwable {
+		parseMatcher("dddd:ddd() -> broadcast;");
+	}
+
+	@Test
+	public void testMatcherNonTerminalGoodPatterns5() throws Throwable {
+		parseMatcher("*:*() -> broadcast;");
+	}
+
 	@Test
 	public void testMatcherNonTerminalBadPattern1() throws Throwable {
 		thrown.expect(ie.hunt.aop.conf.ParseException.class);
 		thrown.expectMessage("Encountered \" \"(\" \"( \"\" at line 1");
-		AspectConfParser parser = new AspectConfParser(new StringReader("() -> broadcast;"));
+		AspectConfParser parser = new AspectConfParser(new StringReader(
+				"() -> broadcast;"));
 		parser.saveAlias("broadcast", "fooBroadcast");
 		parser.Matcher();
 	}
@@ -79,7 +95,7 @@ public class AspectConfParserTest {
 		// thrown.expectMessage(startsWith("Missing alias"));
 		parseFile("sample/bad-aspects2.conf");
 	}
-	
+
 	private void parseFile(String name) throws Exception, IOException {
 		java.io.InputStream is = null;
 		try {
