@@ -51,9 +51,7 @@ public class AspectConfParserTest {
 	@Test
 	public void testMatcherNonTerminalSurviveAmbiguity() throws Throwable {
 		parseMatcher("nbl.**.Blah1:wee() -> broadcast;");
-		
 	}
-	
 
 	@Test
 	public void testMatcherNonTerminalGoodPatterns1() throws Throwable {
@@ -113,5 +111,4 @@ public class AspectConfParserTest {
 			is.close();
 		}
 	}
-
 }
