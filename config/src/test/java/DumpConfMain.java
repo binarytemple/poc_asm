@@ -12,11 +12,11 @@ public class DumpConfMain {
 			AspectConfParser parser = new AspectConfParser(is);
 			try {
 				SimpleNode n = parser.Start();
+				System.out.println("Dumping parse tree");
 				n.dump("");
-				System.out.println("Thank you.");
 			} catch (Exception e) {
-				System.out.println("Oops.");
-				System.out.println(e.getMessage());
+				System.err.println(e.getMessage());
+				System.exit(1);
 			}
 		} finally {
 			is.close();

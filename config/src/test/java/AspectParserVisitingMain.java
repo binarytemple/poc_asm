@@ -1,20 +1,6 @@
-import ie.hunt.aop.conf.ASTAlias;
-import ie.hunt.aop.conf.ASTAliasSection;
-import ie.hunt.aop.conf.ASTExpression;
-import ie.hunt.aop.conf.ASTFqcn;
-import ie.hunt.aop.conf.ASTMatcher;
-import ie.hunt.aop.conf.ASTMatchersSection;
-import ie.hunt.aop.conf.ASTMethodGlob;
-import ie.hunt.aop.conf.ASTPath;
-import ie.hunt.aop.conf.ASTStart;
-import ie.hunt.aop.conf.AspectConfParser;
-import ie.hunt.aop.conf.AspectConfParserVisitor;
 import ie.hunt.aop.conf.ParseException;
-import ie.hunt.aop.conf.SimpleNode;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Bootstrapping the Visitor implementation.

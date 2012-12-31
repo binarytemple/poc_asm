@@ -41,6 +41,13 @@ public class AspectConfParserTest {
 		thrown.expectMessage(startsWith("Missing alias"));
 		parseFile("sample/bad-aspects1.conf");
 	}
+	
+
+	@Test
+	public void testParseValidFile() throws Throwable {
+		parseFile("sample/valid-aspects1.conf");
+	}
+	
 
 	private void parseMatcher(String x) throws ParseException {
 		AspectConfParser parser = new AspectConfParser(new StringReader(x));
@@ -103,7 +110,7 @@ public class AspectConfParserTest {
 			AspectConfParser parser = new AspectConfParser(is);
 			try {
 				SimpleNode n = parser.Start();
-				n.dump("");
+				//n.dump("");
 			} catch (Exception e) {
 				throw e;
 			}
