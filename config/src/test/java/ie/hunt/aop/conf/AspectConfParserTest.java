@@ -1,10 +1,8 @@
 package ie.hunt.aop.conf;
 
 import static org.hamcrest.core.StringStartsWith.startsWith;
-
 import java.io.IOException;
 import java.io.StringReader;
-
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -41,23 +39,12 @@ public class AspectConfParserTest {
 		thrown.expectMessage(startsWith("Missing alias"));
 		parseFile("sample/bad-aspects1.conf");
 	}
-
-	private void parseMatcher(String x) throws ParseException {
-		AspectConfParser parser = new AspectConfParser(new StringReader(x));
-		parser.saveAlias("broadcast", "fooBroadcast");
-		parser.Matcher();
-	}
-
+	
 	@Test
-	public void testMatcherNonTerminalSurviveAmbiguity() throws Throwable {
-		parseMatcher("nbl.**.Blah1:wee() -> broadcast;");		
+	public void testParseValidFile() throws Throwable {
+		parseFile("sample/valid-aspects1.conf");
 	}
-
-	@Test
-	public void testMatcherNonTerminalGoodPatterns1() throws Throwable {
-		parseMatcher("nbl.blah.Blah1:wee() -> broadcast;");
-	}
-
+	
 	@Test
 	public void testMatcherNonTerminalGoodPatterns2() throws Throwable {
 		parseMatcher("nbl.*.*.Blah3:foo() -> broadcast;");
@@ -71,6 +58,16 @@ public class AspectConfParserTest {
 	@Test
 	public void testMatcherNonTerminalGoodPatterns4() throws Throwable {
 		parseMatcher("dddd:ddd() -> broadcast;");
+	}
+
+	@Test
+	public void testMatcherNonTerminalSurviveAmbiguity() throws Throwable {
+		parseMatcher("nbl.**.Blah1:wee() -> broadcast;");		
+	}
+
+	@Test
+	public void testMatcherNonTerminalGoodPatterns1() throws Throwable {
+		parseMatcher("nbl.blah.Blah1:wee() -> broadcast;");
 	}
 
 	@Test
@@ -103,7 +100,7 @@ public class AspectConfParserTest {
 			AspectConfParser parser = new AspectConfParser(is);
 			try {
 				SimpleNode n = parser.Start();
-				n.dump("");
+				//n.dump("");
 			} catch (Exception e) {
 				throw e;
 			}
@@ -112,4 +109,9 @@ public class AspectConfParserTest {
 		}
 	}
 
+	private void parseMatcher(String x) throws ParseException {
+		AspectConfParser parser = new AspectConfParser(new StringReader(x));
+		parser.saveAlias("broadcast", "fooBroadcast");
+		parser.Matcher();
+	}
 }
