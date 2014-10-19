@@ -1,0 +1,1 @@
+java -version 2>&1 | egrep 'java version "1\.7\..*' > /dev/null || ( echo "unsupported java version, use java 1.7" && exit )

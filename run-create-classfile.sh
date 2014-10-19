@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+source ./etc/verify
+
 mvn -q install > /dev/null
 
 pushd . 
