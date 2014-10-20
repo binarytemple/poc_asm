@@ -3,7 +3,7 @@ Comparison of Java and ASM Bytecode generating the same class (without Debug Sym
 
 The Original Java Class
 -----------------------
-`
+```java
 package ie.hunt;
 
 @SuppressWarnings("unused")
@@ -47,12 +47,12 @@ public class SampleMethodCalls {
     }
 
 }
-`
+```
 
 The ASM Bytecode generator for the same Class
 ---------------------------------------------
 
-`
+```java
 
 import java.util.*;
 
@@ -138,4 +138,4 @@ public class SampleMethodCallsDump implements Opcodes {
         return cw.toByteArray();
     }
 }
-`
+```
